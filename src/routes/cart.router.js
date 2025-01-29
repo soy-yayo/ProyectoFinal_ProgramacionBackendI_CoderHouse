@@ -6,6 +6,16 @@ const routerCart = Router();
 
 const cart = {};
 
+async function cargarCarritos() {
+  const data = await fs.promises.readFile('./src/data/cart.json');
+  const carritos = JSON.parse(data);
+  carritos.forEach(carrito => {
+    cart[carrito.id] = carrito;
+  });
+}
+
+cargarCarritos();
+
 // La ruta raíz POST / deberá crear un nuevo carrito con la siguiente estructura:
 /*
 Id:Number/String (A tu elección, de igual manera como con los productos, debes asegurar que nunca se dupliquen los ids y que este se autogenere).
@@ -48,6 +58,9 @@ routerCart.post('/:cid/product/:pid', (req, res) => {
   } else {
     cart[cid].products.push({ id: pid, quantity });
   }
+
+  fs.appendFile('./src/data/cart.json', JSON.stringify(cart[cid]), (err) => { if (err) { res.send({err}); } });
   res.send({ success: 'Producto agregado' });
 });
 
+export default routerCart;
