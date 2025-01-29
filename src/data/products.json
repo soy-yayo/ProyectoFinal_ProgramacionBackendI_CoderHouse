@@ -1,108 +1,22 @@
-{
-  "products": [
-      {
-          "id": 1,
-          "title": "Barra Quaker Stila con relleno sabor moras",
-          "description": "Barra de avena integral con relleno sabor moras",
-          "code": "STILA-MORAS",
-          "price": 50,
-          "status": true,
-          "stock": 100,
-          "category": "barras",
-          "thumbnails": [
-              "archivo1.jpg"
-          ]
-      },
-      {
-          "id": 2,
-          "title": "Barra Quaker Stila con relleno sabor manzana y canela",
-          "description": "Barra de avena integral con relleno sabor manzana y canela",
-          "code": "STILA-MANZANA-CANELA",
-          "price": 50,
-          "status": true,
-          "stock": 100,
-          "category": "barras",
-          "thumbnails": [
-              "archivo2.jpg"
-          ]
-      },
-      {
-          "id": 3,
-          "title": "Barra Quaker Stila con relleno sabor fresa",
-          "description": "Barra de avena integral con relleno sabor fresa",
-          "code": "STILA-FRESA",
-          "price": 50,
-          "status": true,
-          "stock": 100,
-          "category": "barras",
-          "thumbnails": [
-              "archivo3.jpg"
-          ]
-      },
-      {
-          "id": 4,
-          "title": "Barra Quaker Stila Fit sabor frutos rojos",
-          "description": "Barra de avena integral con frutos rojos",
-          "code": "STILA-FIT-FRUTOS-ROJOS",
-          "price": 55,
-          "status": true,
-          "stock": 80,
-          "category": "barras",
-          "thumbnails": [
-              "archivo4.jpg"
-          ]
-      },
-      {
-          "id": 5,
-          "title": "Barra Quaker Stila Fit con chispas sabor chocolate",
-          "description": "Barra de avena integral con chispas de chocolate",
-          "code": "STILA-FIT-CHOCOLATE",
-          "price": 55,
-          "status": true,
-          "stock": 80,
-          "category": "barras",
-          "thumbnails": [
-              "archivo5.jpg"
-          ]
-      },
-      {
-          "id": 6,
-          "title": "Galleta de avena Quaker Línea 0% vainilla",
-          "description": "Galletas de avena sin azúcar sabor vainilla",
-          "code": "LINEA-0-VAINILLA",
-          "price": 60,
-          "status": true,
-          "stock": 90,
-          "category": "galletas",
-          "thumbnails": [
-              "archivo6.jpg"
-          ]
-      },
-      {
-          "id": 7,
-          "title": "Galletas de avena Quaker moras y yogurt",
-          "description": "Galletas de avena con moras y yogurt",
-          "code": "GALLETAS-MORAS-YOGURT",
-          "price": 60,
-          "status": true,
-          "stock": 90,
-          "category": "galletas",
-          "thumbnails": [
-              "archivo7.jpg"
-          ]
-      },
-      {
-          "id": 8,
-          "title": "Galletas de avena Quaker manzana y canela",
-          "description": "Galletas de avena con manzana y canela",
-          "code": "GALLETAS-MANZANA-CANELA",
-          "price": 60,
-          "status": true,
-          "stock": 90,
-          "category": "galletas",
-          "thumbnails": [
-              "archivo8.jpg"
-          ]
-      }
-  ]
-}
+[
+  {
+    "id": 286,
+    "title": "Barra de cacao",
+    "description": " sabor mayonesa",
+    "code": "MAYdsaR",
+    "price": 15,
+    "status": true,
+    "stock": 2,
+    "category": "Barra"
+  },
+  {
+    "id": 914,
+    "title": "Barra de chocolate",
+    "description": " sabor mayonesa",
+    "code": "JIJIJIJA",
+    "price": 100000,
+    "status": true,
+    "stock": 543,
+    "category": "Barra"
+  }
+]

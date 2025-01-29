@@ -63,7 +63,6 @@ routerProducts.post('/', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Error al guardar el producto" });
   }
-  res.send({ success: 'Producto agregado' });
 });
 
 //La ruta PUT /:pid deberá tomar un producto y actualizarlo por los campos enviados desde body. 

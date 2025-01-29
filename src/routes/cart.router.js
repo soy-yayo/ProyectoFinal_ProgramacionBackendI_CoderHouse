@@ -1,20 +1,38 @@
 import { Router } from "express";
+import { promises as fs } from "fs";
 
 
 const routerCart = Router();
 
 
-const cart = {};
+const cart = [];
+const products = [];
 
-async function cargarCarritos() {
-  const data = await fs.promises.readFile('./src/data/cart.json');
-  const carritos = JSON.parse(data);
-  carritos.forEach(carrito => {
-    cart[carrito.id] = carrito;
-  });
+const cargarProductos = async () => {
+  try {
+    const data = await fs.readFile("./src/data/products.json");
+    const productos = JSON.parse(data);
+    productos.forEach(product => products.push(product));
+  }
+  catch (error) {
+    console.log("Error al cargar productos");
+  }
 }
 
-cargarCarritos();
+cargarProductos();
+
+
+const cargarCarrito = async () => {
+  try {
+    const data = await fs.readFile("./src/data/cart.json");
+    const carritos = JSON.parse(data);
+    carritos.forEach(carrito => cart.push(carrito));
+  }
+  catch (error) {
+    console.log("Error al cargar carritos");
+  }
+}
+cargarCarrito();
 
 // La ruta raíz POST / deberá crear un nuevo carrito con la siguiente estructura:
 /*
@@ -22,23 +40,33 @@ Id:Number/String (A tu elección, de igual manera como con los productos, debes 
 products: Array que contendrá objetos que representen cada producto
 */
 
-routerCart.post('/', (req, res) => {
+routerCart.post('/', async (req, res) => {
   const id = Math.floor(Math.random() * 1000);
-  cart[id] = { id, products: [] };
-  res.send({ cart: cart[id] });
+  const { products } = req.body;
+  const newCart = {
+    id,
+    products: []
+  }
+  cart.push(newCart);
+  try {
+    fs.writeFile('./src/data/cart.json', JSON.stringify(cart), (err) => { if (err) { res.send({err}); } });
+    res.send({ success: 'Carrito creado' });
+  } catch (err) {
+    res.send({err});
+  }
 });
 
 
 //La ruta GET /:cid deberá listar los productos que pertenezcan al carrito con el parámetro cid proporcionados.
 
-routerCart.get('/:cid', (req, res) => {
+routerCart.get('/:cid', async (req, res) => {
   const { cid } = req.params;
-  const cartProducts = cart[cid];
-  if (cartProducts) {
-    res.send(cartProducts);
-  } else {
+  const cartProducts = cart.find(cart => cart.id === parseInt(cid));
+  if (!cartProducts) {
     res.send({ error: 'Carrito no encontrado' });
-  }
+  } 
+
+  res.send(cartProducts);
 });
 
 /*
@@ -49,18 +77,38 @@ quantity: debe contener el número de ejemplares de dicho producto. El producto,
 Además, si un producto ya existente intenta agregarse al producto, incrementar el campo quantity de dicho producto. 
 */
 
-routerCart.post('/:cid/product/:pid', (req, res) => {
+routerCart.post('/:cid/product/:pid', async (req, res) => {
   const { cid, pid } = req.params;
-  const { quantity } = req.body;
-  const product = cart[cid].products.find(product => product.id === pid);
-  if (product) {
-    product.quantity += quantity;
-  } else {
-    cart[cid].products.push({ id: pid, quantity });
+  const quantity = parseInt(req.body.quantity) || 1; // Si no se envía quantity, se asume 1
+
+  // Buscar el producto en la lista de productos
+  const product = products.find(product => product.id === parseInt(pid));
+  if (!product) {
+    return res.status(404).json({ error: "Producto no encontrado" });
   }
 
-  fs.appendFile('./src/data/cart.json', JSON.stringify(cart[cid]), (err) => { if (err) { res.send({err}); } });
-  res.send({ success: 'Producto agregado' });
+  // Buscar el carrito en la lista de carritos
+  const productCart = cart.find(cart => cart.id === parseInt(cid));
+  if (!productCart) {
+    return res.status(404).json({ error: "Carrito no encontrado" });
+  }
+
+  // Verificar si el producto ya está en el carrito
+  const existingProduct = productCart.products.find(p => p.product === parseInt(pid));
+  if (existingProduct) {
+    existingProduct.quantity += quantity; // Incrementar cantidad
+  } else {
+    productCart.products.push({ product: pid, quantity });
+  }
+
+  // Guardar cambios en el archivo JSON
+  try {
+    await fs.writeFile('./src/data/cart.json', JSON.stringify(cart, null, 2));
+    res.json({ success: "Producto agregado", cart: productCart });
+  } catch (error) {
+    res.status(500).json({ error: "Error al guardar el carrito" });
+  }
 });
+
 
 export default routerCart;
