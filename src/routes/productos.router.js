@@ -10,6 +10,15 @@ La ruta GET /:pid deberá traer sólo el producto con el id proporcionado
 
 const products =[];
 
+async function cargarProductos() {
+  const data = await fs.promises.readFile('./src/data/products.json');
+  const productos = JSON.parse(data);
+  productos.forEach(producto => {
+    products.push(producto);
+  });
+}
+cargarProductos();
+
 routerProducts.get('/', (req, res) => {
   let { limit } = req.query;
 
@@ -42,6 +51,13 @@ routerProducts.post('/', (req, res) => {
     return;
   }
   products.push({ id, title, description, code, price, status, stock, category, thumbnail });
+
+  fs.appendFile('./src/data/products.json', JSON.stringify({ id, title, description, code, price, status, stock, category, thumbnail }),
+  (err) => {
+    if (err) {
+      res.send({error: 'Error al guardar el producto'});
+    }
+  });
   res.send({success: 'Producto agregado'});
 });
 
@@ -65,6 +81,7 @@ routerProducts.put('/:pid', (req, res) => {
     category: category || products[product].category,
     thumbnail: thumbnail || products[product].thumbnail
   }
+  fs.writeFile('./src/data/products.json', JSON.stringify(products), (err) => {if (err) {res.send({error: err});}});
   res.send({success: 'Producto actualizado'});
 });
 
@@ -77,6 +94,7 @@ routerProducts.delete('/:pid', (req, res) => {
     return;
   }
   products.splice(product, 1);
+  fs.writeFile('./src/data/products.json', JSON.stringify(products), (err) => {if (err) {res.send({error: err});}});
   res.send({success: 'Producto eliminado'});
 });
 
