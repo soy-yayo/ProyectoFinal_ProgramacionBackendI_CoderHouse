@@ -16,5 +16,17 @@
     "name": "Barra de Manzana",
     "price": 12,
     "thumbnail": "https://quaker.lat/mx/sites/default/files/2023-07/750176184798_720x840.png"
+  },
+  {
+    "id": 1739767982402,
+    "name": "Barra de Pina",
+    "price": 13,
+    "thumbnail": "https://quaker.lat/mx/sites/default/files/2023-07/750176181025_720x840.png"
+  },
+  {
+    "id": 1739768489970,
+    "name": "Barra de Arandanos",
+    "price": 17,
+    "thumbnail": "https://quaker.lat/mx/sites/default/files/2023-07/750176186556_720x840.png"
   }
 ]
