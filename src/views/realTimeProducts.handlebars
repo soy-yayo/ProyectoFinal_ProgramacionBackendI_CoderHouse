@@ -6,9 +6,19 @@
           <h2 class="text-xl">{{name}}</h2>
           <p >Precio: ${{price}} </p>
           <img src="{{thumbnail}}" alt="{{name}}" class="w-38 h-40">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="dlt-product">Eliminar</button>
         </li>
       {{/each}}
     </ul> 
+  </div>
+  <div class="mt-8 flex flex-col items-center">
+    <h2 class="mb-4">Agregar Producto</h2>
+    <form action="" class="flex flex-col">
+      <input type="text" id="name" placeholder="Nombre" class="mb-2 ml-2 border border-gray-400 p-2">
+      <input type="text" id="price" placeholder="Precio" class="mb-2 ml-2 border border-gray-400 p-2">
+      <input type="text" id="thumbnail" placeholder="URL Imagen" class="mb-2 ml-2 border border-gray-400 p-2">
+      <button type="submit" class="border border-gray-600 my-4" id="add-product">Enviar</button>
+    </form>
   </div>
 </div>
 
