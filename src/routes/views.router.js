@@ -9,5 +9,10 @@ viewsRouter.get("/", async (req, res) => {
   res.render("home", { title : "Productos agregados hasta el momento", products });
 });
 
+viewsRouter.get("/realtimeproducts", async (req, res) => {
+  // const products = await JSON.parse(fs.readFileSync(__dirname + "/data/rtp.json", "utf-8"));
+  res.render("realtimeproducts", { title : "Productos en tiempo real" });
+});
+
 
 export default viewsRouter;
