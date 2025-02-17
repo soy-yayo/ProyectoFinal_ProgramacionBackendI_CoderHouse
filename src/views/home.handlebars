@@ -2,13 +2,13 @@
   <h1>{{title}}</h1>
   <div>
     <ul>
-      {{#each product}}
+      {{#each products}}
         <li>
-          <h2>{{name}}</h2>
-          <p>{{price}}</p>
-          <img src="{{thumbnail}}" alt="{{name}}">
+          <h2 class="text-xl">{{name}}</h2>
+          <p >Precio: ${{price}} </p>
+          <img src="{{thumbnail}}" alt="{{name}}" class="w-38 h-40">
         </li>
       {{/each}}
-    </ul>
+    </ul> 
   </div>
 </div>
