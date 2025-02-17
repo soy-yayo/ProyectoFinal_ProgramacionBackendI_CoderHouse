@@ -1,18 +1,20 @@
 <div>
   <div>
-    <ul id="products" class="flex flex-wrap justify-center">
+    <ul id="productList" class="flex flex-wrap justify-center">
+      
     </ul> 
   </div>
   <div class="mt-8 flex flex-col items-center">
     <h2 class="mb-4">Agregar Producto</h2>
-    <form action="" id="form" class="flex flex-col">
+    <form id="form" class="flex flex-col">
       <input type="text" id="name" placeholder="Nombre" class="mb-2 ml-2 border border-gray-400 p-2">
-      <input type="text" id="price" placeholder="Precio" class="mb-2 ml-2 border border-gray-400 p-2">
-      <input type="text" id="thumbnail" placeholder="URL Imagen" class="mb-2 ml-2 border border-gray-400 p-2">
-      <button type="submit" class="border border-gray-600 my-4" id="add-product">Enviar</button>
+      <input type="number" id="price" placeholder="Precio" class="mb-2 ml-2 border border-gray-400 p-2">
+      <input type="url" id="thumbnail" placeholder="URL Imagen" class="mb-2 ml-2 border border-gray-400 p-2">
+      <button type="submit" class="border border-gray-600 my-4">Enviar</button>
     </form>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="../public/js/index.js"></script>
+<script src="/js/index.js"></script>
