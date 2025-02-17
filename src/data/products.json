@@ -1,0 +1,17 @@
+[
+  {
+    "name" : "Barra de Chocolate",
+    "price" : 10.00,
+    "thumbnail" : "https://quaker.lat/mx/sites/default/files/2023-07/750176186481_720x840.png"
+  },
+  {
+    "name" : "Barra de Fresa",
+    "price" : 5.00,
+    "thumbnail" : "https://quaker.lat/mx/sites/default/files/2023-07/750176186329_720x840.png"
+  },
+  {
+    "name" : "Barra de Mora",
+    "price" : 7.00,
+    "thumbnail" : "https://quaker.lat/mx/sites/default/files/2023-07/750176184797_720x840.png"
+  }
+]
