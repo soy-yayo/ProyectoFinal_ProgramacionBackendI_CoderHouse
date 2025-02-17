@@ -6,7 +6,7 @@ const viewsRouter = Router();
 
 viewsRouter.get("/", async (req, res) => {
   const products = await JSON.parse(fs.readFileSync(__dirname + "/data/products.json", "utf-8"));
-  res.render("home", { products });
+  res.render("home", { title : "Productos agregados hasta el momento", products });
 });
 
 
