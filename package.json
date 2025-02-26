@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "express-handlebars": "^8.0.1"
+  },
+  "name": "proyectofinal_programacionbackendi_coderhouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soy-yayo/ProyectoFinal_ProgramacionBackendI_CoderHouse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soy-yayo/ProyectoFinal_ProgramacionBackendI_CoderHouse/issues"
+  },
+  "homepage": "https://github.com/soy-yayo/ProyectoFinal_ProgramacionBackendI_CoderHouse#readme"
+}
