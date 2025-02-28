@@ -1,18 +1,17 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
-const cartCollection = 'carrito Quaker';
+const cartCollection = 'carritoQuaker';
 
 const carSchema = mongoose.Schema({
   products : {
-    type :[
-      {
+    type : [{
         product : {
           type : mongoose.Schema.Types.ObjectId,
-          ref : "product.model",
-          quantity : Number
-        }
-      }
+          ref : "productos Quaker"
+        },
+        quantity : Number
+    }
     ],
     default : []
   }
