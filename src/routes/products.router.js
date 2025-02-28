@@ -76,7 +76,6 @@ productsRouter.get('/:pid', async (req, res) => {
 // Crear un nuevo producto
 productsRouter.post('/', async (req, res) => {
   const { name, price, category, thumbnail, stock,  id} = req.body;
-  id = Math.floor(Math.random() * 1000);
 
   const newProduct = {
     name,
