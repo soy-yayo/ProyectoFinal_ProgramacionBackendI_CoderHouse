@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
-const productCollection = 'Productos Quaker';
+const productCollection = 'productosQuaker';
 
 const productSchema = mongoose.Schema({
   name : {type : String, required: true }, 

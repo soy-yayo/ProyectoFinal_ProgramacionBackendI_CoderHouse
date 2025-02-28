@@ -8,7 +8,7 @@ const carSchema = mongoose.Schema({
     type : [{
         product : {
           type : mongoose.Schema.Types.ObjectId,
-          ref : "productos Quaker"
+          ref : "productosQuaker"
         },
         quantity : Number
     }
