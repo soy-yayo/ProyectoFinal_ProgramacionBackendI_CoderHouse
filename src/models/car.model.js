@@ -10,12 +10,16 @@ const carSchema = mongoose.Schema({
           type : mongoose.Schema.Types.ObjectId,
           ref : "productosQuaker"
         },
-        quantity : Number
+        quantity : {type : Number, default : 1}
     }
     ],
     default : []
   }
 });
 
+  carSchema.pre("find", function () {
+  this.populate("products.product");
+ });
+ 
 carSchema.plugin(mongoosePaginate);
 export const cartModel = mongoose.model(cartCollection, carSchema);
