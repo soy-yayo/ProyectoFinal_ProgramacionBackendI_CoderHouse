@@ -4,6 +4,8 @@ import { productModel } from "../models/product.model.js";
 
 const productsRouter = Router();
 
+
+
 productsRouter.get("/", async (req, res) => {
   try {
     let {limit = 10, page = 1, sort, query} = req.query;
@@ -57,6 +59,38 @@ productsRouter.get("/", async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ status: "error", message: error });
+  }
+});
+
+// Buscar producto por id
+productsRouter.get('/:pid', async (req, res) => {
+  const { pid } = req.params;
+  const product = await productModel.find({id : pid});
+  if (product) {
+    res.send({ product });
+  } else {
+    res.send({ error: 'producto no encontrado' });
+  }
+});
+
+// Crear un nuevo producto
+routerProducts.post('/', async (req, res) => {
+  const { name, price, category, thumbnail, stock,  id} = req.body;
+  id = Math.floor(Math.random() * 1000);
+
+  const newProduct = {
+    name,
+    price,
+    category,
+    thumbnail,
+    stock,
+    id
+  }
+  try {
+    productModel.create(newProduct);
+    res.json({ success: "Producto agregado", product: newProduct });
+  } catch (error) {
+    res.status(500).json({ error: "Error al guardar el producto" });
   }
 });
 
