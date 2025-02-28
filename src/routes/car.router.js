@@ -1,32 +1,32 @@
 import { Router } from 'express'
 import __dirname from "../utils.js";
-import { carModel } from "../models/car.model.js";
+import { cartModel } from "../models/car.model.js";
 import { productModel } from '../models/product.model.js';
 
-const carRouter = Router();
+const cartRouter = Router();
 
-carRouter.get('/', async (req, res) => {
-  const carts = await carModel.find();
+cartRouter.get('/', async (req, res) => {
+  const carts = await cartModel.find();
   res.json({
     status: "success",
     payload: carts,
   });
 });
 
-carRouter.get('/:cid', async (req, res) => {
+cartRouter.get('/:cid', async (req, res) => {
   const { cid } = req.params;
-  const cartProducts = await carModel.findById(cid).populate("products.product"); 
+  const cartProducts = await cartModel.findById(cid).populate("products.product"); 
   if (!cartProducts) {
     res.send({ error: 'Carrito no encontrado' });
   } 
   res.send(cartProducts);
 });
 
-carRouter.post('/', async (req, res) => {
+cartRouter.post('/', async (req, res) => {
   try {
     const { products } = req.body;
 
-   const newCart = new carModel({
+   const newCart = new cartModel({
     products : products || [],
    });
 
@@ -38,7 +38,7 @@ carRouter.post('/', async (req, res) => {
   }
 });
 
-carRouter.post('/:cid/product/:pid', async (req, res) => {
+cartRouter.post('/:cid/product/:pid', async (req, res) => {
   const { cid, pid } = req.params;
   const quantity = parseInt(req.body.quantity) || 1; // Si no se envía quantity, se asume 1
   
@@ -50,7 +50,7 @@ carRouter.post('/:cid/product/:pid', async (req, res) => {
   }
 
   // Buscar el carrito
-  const productCart = await carModel.findById(cid);
+  const productCart = await cartModel.findById(cid);
   if (!productCart) {
     return res.status(404).json({ error: "Carrito no encontrado" });
   }
@@ -72,4 +72,4 @@ carRouter.post('/:cid/product/:pid', async (req, res) => {
   }
 });
 
-export default carRouter;
+export default cartRouter;

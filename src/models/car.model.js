@@ -18,4 +18,4 @@ const carSchema = mongoose.Schema({
 });
 
 carSchema.plugin(mongoosePaginate);
-export const carModel = mongoose.model(cartCollection, carSchema);
+export const cartModel = mongoose.model(cartCollection, carSchema);
