@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/api/products', productsRouter);
 app.use('/api/carts', carRouter);
 
-mongoose.connect('mongodb+srv://elyayo:1234567890@proyectofinalcoderhouse.15zxz.mongodb.net/?retryWrites=true&w=majority&appName=proyectoFinalCoderhouse')
+mongoose.connect('<link mongodb>')
 .then(() => {
   console.log("Conexión a la base de datos exitosa.");
 }).catch((e) => {
