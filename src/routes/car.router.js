@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import __dirname from "../utils.js";
 import { cartModel } from "../models/car.model.js";
 import { productModel } from '../models/product.model.js';
 
