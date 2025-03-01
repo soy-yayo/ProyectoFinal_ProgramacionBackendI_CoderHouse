@@ -4,7 +4,7 @@ import handlebars from 'express-handlebars';
 import productsRouter from './routes/products.router.js';
 import carRouter from './routes/car.router.js'
 import mongoose from 'mongoose';
-import { productModel } from './models/product.model.js';
+import viewsRouter from './routes/views.router.js';
 
 const app = express();
 const PORT = 8080;
@@ -19,6 +19,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
 app.use('/api/products', productsRouter);
 app.use('/api/carts', carRouter);
+app.use('/products', viewsRouter);
 
 mongoose.connect('mongodb+srv://elyayo:1234567890@proyectofinalcoderhouse.15zxz.mongodb.net/?retryWrites=true&w=majority&appName=proyectoFinalCoderhouse')
 .then(() => {
