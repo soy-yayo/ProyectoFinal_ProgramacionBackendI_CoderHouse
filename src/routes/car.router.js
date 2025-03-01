@@ -135,4 +135,57 @@ cartRouter.put('/:cid', async (req, res) => {
   }
 });
 
+// PUT :cid/products/:pid deberá poder actualizar SÓLO la cantidad de ejemplares del producto por cualquier cantidad pasada desde req.body
+cartRouter.put('/:cid/product/:pid', async (req, res) => {
+  const { cid, pid } = req.params;
+  const { quantity } = req.body; // Se espera un objeto con la propiedad 'quantity'
+
+  try {
+    // Buscar el carrito por su ID
+    const productCart = await cartModel.findById(cid);
+    if (!productCart) {
+      return res.status(404).json({ error: "Carrito no encontrado" });
+    }
+
+    // Verificar si el producto existe en el carrito
+    const existingProduct = productCart.products.find(item => item.product.toString() === pid);
+    if (!existingProduct) {
+      return res.status(404).json({ error: "El producto no se encuentra en el carrito" });
+    }
+
+    existingProduct.quantity = typeof quantity === 'number' ? quantity : 1;
+
+    // Guardar los cambios en la base de datos
+    await productCart.save();
+
+    res.status(200).json({ message: "Carrito actualizado", cart: productCart });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// DELETE api/carts/:cid deberá eliminar todos los productos del carrito 
+cartRouter.delete('/:cid', async (req, res) => {
+  const { cid } = req.params;
+  
+  try {
+    // Buscar el carrito
+    const productCart = await cartModel.findById(cid);
+
+    if (!productCart) {
+      return res.status(404).json({ error: "Carrito no encontrado" });
+    }
+
+  // Eliminar los productos
+  productCart.products = [];
+
+  // Guardar los cambios en la base de datos
+  await productCart.save();
+
+  res.json({ success: "Productos eliminados"});
+  }catch(e){
+    res.status(500).json({ error: 'Error al guardar los cambios' });
+  }
+});
+
 export default cartRouter;
